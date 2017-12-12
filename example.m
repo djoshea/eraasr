@@ -1,10 +1,11 @@
 %% Load test dataset
 
-% loads variable data: 40 trials x 6600 30kHz (220 ms) samples x 24 channels
-% stim occurs roughly 20 ms in (600 samples) and lasts 60 ms
-% comprising 20 biphasic pulses spaced 3 ms apart
+% loads variable data: 40 trials x 7501 30kHz (-50 ms pre to 200 ms post stim onset) samples x 24 channels
+% stim occurs roughly 50 ms in (1500 samples) and lasts 60 ms
+% 20 biphasic pulses spaced 3 ms apart
 
 load exampleDataTensor.mat
+data = data_trials_by_time_by_pulses;
 
 %% Setup ERAASR Parameters
 
@@ -21,15 +22,15 @@ opts.alignUpsampleBy = 10;
 opts.alignWindowPre = Fms * 0.5;
 opts.alignWindowDuration = Fms * 12;
 
-% 60 ms stim, align using 50 ms pre start to 110 post
-opts.extractWindowPre = Fms * 50;
+% 60 ms stim, align using 20 ms pre start to 110 post
+opts.extractWindowPre = Fms * 20;
 opts.extractWindowDuration = Fms * 100;
 opts.cleanStartSamplesPreThreshold = Fms * 0.5;
         
-opts.cleanHPCornerHz = 250; % light high pass filtering at the start of cleaning
+opts.cleanHPCornerHz = 10; % light high pass filtering at the start of cleaning
 opts.cleanHPOrder = 4; % high pass filter order 
 opts.cleanUpsampleBy = 1; % upsample by this ratio during cleaning
-opts.samplesPerPulse = Fms * 3;
+opts.samplesPerPulse = Fms * 3; % 3 ms pulses
 opts.nPulses = 20;
 
 opts.nPC_channels = 12;
@@ -45,7 +46,7 @@ opts.pcaOnlyOmitted = true; % if true, build PCs only from non-omitted channels/
 
 opts.cleanOverChannelsIndividualTrials = false;
 opts.cleanOverPulsesIndividualChannels = false;
-opts.cleanOverTrialsIndividualChannels = true;
+opts.cleanOverTrialsIndividualChannels = false;
 
 opts.cleanPostStim = true; % clean the post stim window using a single PCR over channels
 
@@ -57,7 +58,14 @@ opts.saveFigures = false; % whether to save the figures
 opts.saveFigureCommand = @(filepath) print('-dpng', '-r300', [filepath '.png']); % specify a custom command to save the figure
 
 %% Do alignment and cleaning procedure
+
 [dataCleaned, extract] = ERAASR.cleanTrials(data, opts);
+
+%% Plot the cleaned traces on a single trial
+
+figure();
+plot(squeeze(dataCleaned(1, :, :)));
+box off;
 
 %% Note before spike extraction
 % It would presumably make sense to combine the stimulated trials with any 
