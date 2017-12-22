@@ -1,6 +1,10 @@
 # ERAASR
 
-ERAASR (Estimation and Removal of Array Artifacts via Sequential principal components Regression) is an algorithm for removing electrical stimulation artifacts from multielectrode array recordings. Read more in the preprint up on bioRxiv at https://www.biorxiv.org/content/early/2017/09/07/185850. 
+ERAASR (Estimation and Removal of Array Artifacts via Sequential principal components Regression) is an algorithm for removing electrical stimulation artifacts from multielectrode array recordings. 
+
+Journal of Neural Engineering (accepted manuscript): http://iopscience.iop.org/article/10.1088/1741-2552/aaa365
+
+Preprint on bioRxiv: https://www.biorxiv.org/content/early/2017/09/07/185850. 
 
 Source code (Matlab): https://github.com/djoshea/eraasr/
 
