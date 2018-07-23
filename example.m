@@ -1,11 +1,11 @@
 %% Load test dataset
 
-% loads variable data: 40 trials x 7501 30kHz (-50 ms pre to 200 ms post stim onset) samples x 24 channels
+% loads variable data: 40 trials x 7501 samples at 30kHz (-50 ms pre to 200 ms post stim onset) x 24 channels
 % stim occurs roughly 50 ms in (1500 samples) and lasts 60 ms
 % 20 biphasic pulses spaced 3 ms apart
 
 load exampleDataTensor.mat
-data = data_trials_by_time_by_pulses;
+data = data_trials_by_time_by_channels;
 
 %% Setup ERAASR Parameters
 
