@@ -12,7 +12,7 @@ function rms = computeRMS(data, varargin)
     p.parse(varargin{:});
 
     if ~isempty(p.Results.clip)
-        data = TensorUtils.clip(data, p.Results.clip, NaN);
+        data = ERAASR.TensorUtils.clip(data, p.Results.clip, NaN);
     end
 
     if iscell(data)
