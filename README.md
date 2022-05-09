@@ -2,6 +2,8 @@
 
 ERAASR (Estimation and Removal of Array Artifacts via Sequential principal components Regression) is an algorithm for removing electrical stimulation artifacts from multielectrode array recordings. 
 
+Note: if you are looking for the version that works with Neuropixels recordings, please contact me (Github handle at Stanford). This version should be published shortly and differs meaningfully from the version in this repo, although the concept is similar.
+
 Journal of Neural Engineering (accepted manuscript): http://iopscience.iop.org/article/10.1088/1741-2552/aaa365
 
 Preprint on bioRxiv: https://www.biorxiv.org/content/early/2017/09/07/185850. 
